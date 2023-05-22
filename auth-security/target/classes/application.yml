@@ -1,0 +1,66 @@
+server:
+  port: 4567
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/auth-security?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 'root'
+    hikari:
+        # 最大连接池数量
+        maxPoolSize: 20
+        # 最小空闲线程数量
+        minIdle: 10
+        # 配置获取连接等待超时的时间
+        connectionTimeout: 10000
+        # 校验超时时间
+        validationTimeout: 5000
+        # 空闲连接存活最大时间，默认10分钟
+        idleTimeout: 60000
+        # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认30分钟
+        maxLifetime: 900000
+        # 连接测试query（配置检测连接是否有效）
+        connectionTestQuery: SELECT 1
+
+  redis:
+    # 地址
+    host: 192.144.220.234
+    # 端口，默认为6379
+    port: 6379
+    # 数据库索引
+    database: 5
+    # 密码
+    password: 'YX19980904'
+    # 连接超时时间
+    timeout: 10s
+    # 是否开启ssl
+    ssl: false
+    # 线程池数量
+    threads: 16
+    # Netty线程池数量
+    nettyThreads: 32
+    # 单节点配置
+    singleServerConfig:
+      # 客户端名称
+      clientName: ${project.name}
+      # 最小空闲连接数
+      connectionMinimumIdleSize: 32
+      # 连接池大小
+      connectionPoolSize: 64
+      # 连接空闲超时，单位：毫秒
+      idleConnectionTimeout: 10000
+      # 命令等待超时，单位：毫秒
+      timeout: 3000
+      # 发布和订阅连接池大小
+      subscriptionConnectionPoolSize: 50
+
+mybatis:
+  # 标记xml位置 扫描构建mappedStatemente
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+        # 驼峰
+        map-underscore-to-camel-case: true
+        # 日志打印
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
