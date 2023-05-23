@@ -1,5 +1,7 @@
 package com.cqnews.auth.controller;
 
+import com.cqnews.auth.entity.LoginUser;
+import com.cqnews.auth.security.util.SecurityUtil;
 import com.cqnews.auth.util.Result;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +13,8 @@ public class TestController {
     @GetMapping("/add")
     @PreAuthorize("hasAuthority('system:works:add')")
     public Result add(){
-        return Result.SUCCESS("新增成功");
+        Long userId = SecurityUtil.getUserId();
+        return Result.SUCCESS(userId+"新增成功");
     }
 
     @GetMapping("/query")
