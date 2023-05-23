@@ -1,5 +1,7 @@
 package com.cqnews.auth.security.config;
 
+import com.cqnews.auth.security.custom.CustomAuthenticationProvider;
+import com.cqnews.auth.security.custom.SendCodeUserDetailsService;
 import com.cqnews.auth.security.filter.LoginSecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationEntryPointImpl authenticationEntryPoint;
 
+
+    @Autowired
+    private SendCodeUserDetailsService sendCodeUserDetailsService;
+
     @Autowired
     private CustomAccessDeineHandler customAccessDeineHandler;
 
@@ -35,10 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(defaultUserService);
-        super.configure(auth);
+        CustomAuthenticationProvider customAuthenticationProvider = new CustomAuthenticationProvider();
+        customAuthenticationProvider.setUserDetailsService(sendCodeUserDetailsService);
+        auth.authenticationProvider(customAuthenticationProvider);
     }
 
     @Bean
@@ -46,8 +56,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

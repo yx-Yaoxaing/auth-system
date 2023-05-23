@@ -14,4 +14,7 @@
                                             INNER JOIN sys_menu as c ON c.id=b.menu_id
         WHERE a.user_id=#{userId}
     </select>
+    <select id="findByPhone" resultType="com.cqnews.auth.entity.User">
+        select * from sys_user where phone=#{phone}
+    </select>
 </mapper>

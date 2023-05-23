@@ -13,4 +13,5 @@ public interface UserMapper {
 
     Set<String> findPermByUserId(Long userId);
 
+    User findByPhone(String phone);
 }

@@ -11,15 +11,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 /**
  * 自定义授权提供器
  */
+
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private UserDetailsService userDetailsService;
+    private SendCodeUserDetailsService sendCodeUserDetailsService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String username = (String) authentication.getPrincipal();
-        UserDetails loadedUser = this.getUserDetailsService().loadUserByUsername(username);
-        CustomAuthenticationToken customAuthenticationToken = new CustomAuthenticationToken(loadedUser.getUsername(),loadedUser.getPassword(),loadedUser.getAuthorities());
+        String phone = (String) authentication.getPrincipal();
+        String code = (String) authentication.getCredentials();
+        UserDetails loadedUser = this.getUserDetailsService().sendCode(phone,code);
+        CustomAuthenticationToken customAuthenticationToken = new CustomAuthenticationToken(loadedUser,loadedUser.getPassword(),loadedUser.getAuthorities());
         return customAuthenticationToken;
     }
 
@@ -28,12 +30,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         return (CustomAuthenticationToken.class.isAssignableFrom(authentication));
     }
 
-    public void setUserDetailsService(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public void setUserDetailsService(SendCodeUserDetailsService sendCodeUserDetailsService) {
+        this.sendCodeUserDetailsService = sendCodeUserDetailsService;
     }
 
-    protected UserDetailsService getUserDetailsService() {
-        return this.userDetailsService;
+    protected SendCodeUserDetailsService getUserDetailsService() {
+        return this.sendCodeUserDetailsService;
     }
 
 }
