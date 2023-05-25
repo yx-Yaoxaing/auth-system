@@ -28,7 +28,14 @@ public class DefaultUserService implements UserDetailsService {
         if (Objects.isNull(user)) {
             throw new LoginUserNamePasswordException("用户名或密码错误");
         }
-        Set<String> setPerm = userMapper.findPermByUserId(user.getId());
+        Long userId = user.getId();
+        Set<String> rolePerm = userMapper.findRolePermByUserId(userId);
+        Set<String> setPerm = userMapper.findPermByUserId(userId);
+        rolePerm.forEach(val->{
+            String roleAuth = "ROLE_" + val;
+            setPerm.add(roleAuth);
+        });
+        setPerm.addAll(rolePerm);
         LoginUser loginUser = new LoginUser(user,setPerm);
         return loginUser;
     }

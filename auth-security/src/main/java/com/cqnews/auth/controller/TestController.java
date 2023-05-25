@@ -23,4 +23,10 @@ public class TestController {
         return Result.SUCCESS("查询成功");
     }
 
+    @GetMapping("/role")
+    @PreAuthorize("hasRole('s_role1')")
+    public Result role(){
+        return Result.SUCCESS("查询成功");
+    }
+
 }

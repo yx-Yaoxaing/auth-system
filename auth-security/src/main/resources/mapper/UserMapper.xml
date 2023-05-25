@@ -17,4 +17,15 @@
     <select id="findByPhone" resultType="com.cqnews.auth.entity.User">
         select * from sys_user where phone=#{phone}
     </select>
+    <select id="findRolePermByUserId" resultType="java.lang.String">
+        SELECT
+            c.role_perm
+        FROM
+            sys_user AS a
+                INNER JOIN sys_user_role as b
+                           ON a.id=b.user_id
+                INNER JOIN sys_role as c
+                           ON c.id=b.role_id
+        WHERE a.id=#{userId}
+    </select>
 </mapper>

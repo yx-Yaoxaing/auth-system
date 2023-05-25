@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>auth-security</module>
+        <module>auth-security-oauth2</module>
     </modules>
 
     <properties>
