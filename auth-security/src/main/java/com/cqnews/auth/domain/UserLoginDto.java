@@ -11,4 +11,7 @@ public class UserLoginDto {
 
     private String code;
 
+    // 登录类型
+    String loginType;
+
 }

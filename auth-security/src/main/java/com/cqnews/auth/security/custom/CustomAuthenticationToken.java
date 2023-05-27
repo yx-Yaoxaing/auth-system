@@ -27,6 +27,7 @@ public class CustomAuthenticationToken extends AbstractAuthenticationToken {
         super.setAuthenticated(true); // must use super, as we override
     }
 
+
     @Override
     public Object getCredentials() {
         return credentials;
