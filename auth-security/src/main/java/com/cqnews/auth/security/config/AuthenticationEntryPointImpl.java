@@ -7,7 +7,9 @@ import com.cqnews.auth.util.Result;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -29,6 +31,10 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
              result = Result.FAIL(authException.getMessage());
         } else if (authException instanceof InsufficientAuthenticationException){
             result = Result.FAIL("请先登录");
+        } else if (authException instanceof LockedException) {
+            result = Result.FAIL("账户被锁定");
+        } else if (authException instanceof DisabledException) {
+            result = Result.FAIL("账户被关闭");
         }
 
         response.setContentType("application/json;charset=utf-8");

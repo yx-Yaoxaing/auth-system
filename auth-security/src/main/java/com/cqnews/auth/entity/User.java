@@ -11,7 +11,13 @@ public class User {
 
     private String password;
 
+    // 禁用 启用
     private Integer status;
 
+    // 关闭
+    private boolean enable;
 
+    public boolean getEnable() {
+        return enable;
+    }
 }

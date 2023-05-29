@@ -37,6 +37,13 @@ public class DefaultUserService implements UserDetailsService {
         });
         setPerm.addAll(rolePerm);
         LoginUser loginUser = new LoginUser(user,setPerm);
+        // 1 启用  0禁用
+        if (user.getStatus() == 1) {
+            loginUser.setUserAccountNonLocked(true);
+        } else {
+            loginUser.setUserAccountNonLocked(false);
+        }
+        loginUser.setUserEnabled(user.getEnable());
         return loginUser;
     }
 }

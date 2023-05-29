@@ -17,6 +17,9 @@ public class LoginUser implements UserDetails {
 
     private Set<String>  perm;
 
+    private boolean userAccountNonLocked;
+
+    private boolean userEnabled;
 
     public LoginUser(User user, Set<String> perm) {
         this.user = user;
@@ -51,7 +54,7 @@ public class LoginUser implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return userAccountNonLocked;
     }
 
     @Override
@@ -61,6 +64,14 @@ public class LoginUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return userEnabled;
+    }
+
+    public void setUserAccountNonLocked(boolean userAccountNonLocked) {
+        this.userAccountNonLocked = userAccountNonLocked;
+    }
+
+    public void setUserEnabled(boolean userEnabled) {
+        this.userEnabled = userEnabled;
     }
 }

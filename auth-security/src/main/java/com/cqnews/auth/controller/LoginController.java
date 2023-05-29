@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -25,6 +27,8 @@ import java.util.UUID;
 public class LoginController {
     Logger log = LoggerFactory.getLogger(LoginController.class);
 
+    @Autowired
+    private Map<String,AuthenticationManager> map;
 
     @Autowired
     private AuthenticationManager authenticationManager;
