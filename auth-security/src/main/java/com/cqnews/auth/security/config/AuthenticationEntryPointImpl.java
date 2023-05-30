@@ -1,11 +1,9 @@
 package com.cqnews.auth.security.config;
 
 
-import cn.hutool.http.ContentType;
 import cn.hutool.json.JSONUtil;
-import com.cqnews.auth.util.Result;
+import org.cqnews.common.util.Result;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
@@ -17,7 +15,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * 未登录全局

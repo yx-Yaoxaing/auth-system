@@ -1,11 +1,9 @@
 package com.cqnews.auth.security.config;
 
 import cn.hutool.json.JSONUtil;
-import com.cqnews.auth.util.Result;
+import org.cqnews.common.util.Result;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 import javax.servlet.ServletException;

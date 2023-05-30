@@ -1,8 +1,7 @@
 package com.cqnews.auth.controller;
 
-import com.cqnews.auth.entity.LoginUser;
 import com.cqnews.auth.security.util.SecurityUtil;
-import com.cqnews.auth.util.Result;
+import org.cqnews.common.util.Result;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

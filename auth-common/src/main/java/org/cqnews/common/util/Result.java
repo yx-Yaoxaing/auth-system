@@ -1,4 +1,4 @@
-package com.cqnews.auth.util;
+package org.cqnews.common.util;
 
 import lombok.Data;
 
